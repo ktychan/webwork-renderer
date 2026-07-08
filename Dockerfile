@@ -46,7 +46,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -fr /var/lib/apt/lists/* /tmp/*
 
-RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests texlive-full ghostscript graphviz
+RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests texlive-full ghostscript graphviz dvisvgm pdf2svg dvipng
 
 RUN cpanm install Mojo::Base Statistics::R::IO::Rserve Date::Format Future::AsyncAwait Crypt::JWT IO::Socket::SSL CGI::Cookie \
     && rm -fr ./cpanm /root/.cpanm /tmp/*
