@@ -9,17 +9,25 @@ This is a PG Renderer derived from the WeBWorK2 codebase
 
 ## DOCKER CONTAINER INSTALL
 
+Create a folder for webwork if it does not exist yet.
 ```bash
 mkdir webwork && cd webwork
+```
+
+Run the following commands within the `webweork` folder to create a Docker image.
+```bash
 git clone --recursive https://github.com/ktychan/webwork-renderer container
 git clone https://github.com/openwebwork/webwork-open-problem-library opl
 mkdir problems
 
 docker build --tag renderer:1.0 ./container
+```
 
+Run the Docker image to start the webwork renderer.
+``` bash
 docker run -d \
   --rm \
-  --name standalone-renderer \
+  --name webwork-renderer \
   --publish 3000:3000 \
   --mount type=bind,source="$(pwd)"/opl/,target=/usr/app/webwork-open-problem-library \
   --mount type=bind,source="$(pwd)"/problems,target=/usr/app/private \
