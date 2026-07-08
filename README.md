@@ -16,10 +16,13 @@ mkdir webwork && cd webwork
 
 Run the following commands within the `webweork` folder to create a Docker image.
 ```bash
-git clone --recursive https://github.com/ktychan/webwork-renderer container
+git clone --recursive git@github.com:ktychan/webwork-renderer.git container
 git clone https://github.com/openwebwork/webwork-open-problem-library opl
 mkdir -p problems
+```
 
+Build the Docker image. Run this every time the container configuration changes.
+```bash
 docker build --tag renderer:1.0 ./container
 ```
 
