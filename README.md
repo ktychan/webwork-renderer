@@ -14,7 +14,7 @@ Create a folder for webwork if it does not exist yet.
 mkdir webwork && cd webwork
 ```
 
-Run the following commands within the `webweork` folder to create a Docker image.
+Run the following commands within the `webwork` folder to create a Docker image.
 ```bash
 git clone --recursive git@github.com:ktychan/webwork-renderer.git container
 git clone https://github.com/openwebwork/webwork-open-problem-library opl
