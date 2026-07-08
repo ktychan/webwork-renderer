@@ -42,28 +42,6 @@ A default configuration file is included in the container, but it can be overrid
   --mount type=bind,source=/pathToYour/render_app.conf,target=/usr/app/render_app.conf \
 ```
 
-## LOCAL INSTALL
-
-If using a local install instead of docker:
-
-* Clone the renderer and its submodules: `git clone --recursive https://github.com/openwebwork/renderer`
-* Enter the project directory: `cd renderer`
-* Install Perl dependencies listed in Dockerfile (CPANMinus recommended)
-* clone webwork-open-problem-library into the provided stub ./webwork-open-problem-library
-  * `git clone https://github.com/openwebwork/webwork-open-problem-library ./webwork-open-problem-library`
-* copy `render_app.conf.dist` to `render_app.conf` and make any desired modifications
-* copy `conf/pg_config.yml` to `lib/PG/pg_config.yml` and make any desired modifications
-* install third party JavaScript dependencies
-  * `cd public/`
-  * `npm ci`
-  * `cd ..`
-* install PG JavaScript dependencies
-  * `cd lib/PG/htdocs`
-  * `npm ci`
-* start the app with `morbo ./script/render_app` or `morbo -l http://localhost:3000 ./script/render_app` if changing
-  root url
-* access on `localhost:3000` by default or otherwise specified root url
-
 ## Editor Interface
 
 * point your browser at [`localhost:3000`](http://localhost:3000/)
