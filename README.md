@@ -13,7 +13,7 @@ This is a PG Renderer derived from the WeBWorK2 codebase
 mkdir volumes
 mkdir container
 git clone https://github.com/openwebwork/webwork-open-problem-library volumes/webwork-open-problem-library
-git clone --recursive https://github.com/openwebwork/renderer container/
+git clone --recursive https://github.com/ktychan/webwork-renderer container/
 docker build --tag renderer:1.0 ./container
 
 docker run -d \
@@ -21,15 +21,9 @@ docker run -d \
   --name standalone-renderer \
   --publish 3000:3000 \
   --mount type=bind,source="$(pwd)"/volumes/webwork-open-problem-library/,target=/usr/app/webwork-open-problem-library \
+  --mount type=bind,source="$(pwd)"/problems,target=/usr/app/private \
   --env MOJO_MODE=development \
   renderer:1.0
-```
-
-If you have non-OPL content, it can be mounted as a volume at `/usr/app/private` by adding the following line to the
-`docker run` command:
-
-```bash
-  --mount type=bind,source=/pathToYourLocalContentRoot,target=/usr/app/private \
 ```
 
 A default configuration file is included in the container, but it can be overridden by mounting a replacement at the
