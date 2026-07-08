@@ -10,17 +10,18 @@ This is a PG Renderer derived from the WeBWorK2 codebase
 ## DOCKER CONTAINER INSTALL
 
 ```bash
-mkdir volumes
-mkdir container
-git clone https://github.com/openwebwork/webwork-open-problem-library volumes/webwork-open-problem-library
-git clone --recursive https://github.com/ktychan/webwork-renderer container/
+mkdir webwork && cd webwork
+git clone --recursive https://github.com/ktychan/webwork-renderer container
+git clone https://github.com/openwebwork/webwork-open-problem-library opl
+mkdir problems
+
 docker build --tag renderer:1.0 ./container
 
 docker run -d \
   --rm \
   --name standalone-renderer \
   --publish 3000:3000 \
-  --mount type=bind,source="$(pwd)"/volumes/webwork-open-problem-library/,target=/usr/app/webwork-open-problem-library \
+  --mount type=bind,source="$(pwd)"/opl/,target=/usr/app/webwork-open-problem-library \
   --mount type=bind,source="$(pwd)"/problems,target=/usr/app/private \
   --env MOJO_MODE=development \
   renderer:1.0
